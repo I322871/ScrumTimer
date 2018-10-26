@@ -58,10 +58,8 @@ chrome.runtime.onMessage.addListener(function(request) {
     if (interval) {
         clearInterval(interval);
     }
-    if (alertInterval) {
-        clearInterval(alertInterval);
-    }
-    if(request.action === 'start') {
+    _clearAlert();
+    if(document.body.firstChild !== div) {
         document.body.insertBefore(div, document.body.firstChild);
         chrome.storage.sync.get({time: 120}, function(items) {
             storageTime = items.time;

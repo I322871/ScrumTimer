@@ -1,6 +1,6 @@
 {
     "name": "Scrum Timer",
-    "version": "1.01",
+    "version": "1.2",
     "description": "Scrum Timer",
     "permissions": ["storage", "declarativeContent"],
     "options_page": "options.html",
