@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<div>
-		<p>Discussion Time for Each Backlog (ms):</p>
-		<input id="optionInput" type="number" onchange="onChange"/>
-		<button id="saveButton">Save</button>
+	<div style="display: flex; flex-direction: column; width: 500px">
+		<p>Discussion Time for Each Backlog (s):</p>
+        <input id="timeInput" type="number"/>
+        <p>Scrum URLs (separated by ;):</p>
+        <input id="urlInput"/>
+        <button id="saveButton" style="margin-top: 15px">Save</button>
 	</div>
 </body>
 <script src="options.js"></script>

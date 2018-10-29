@@ -2,7 +2,7 @@
     "name": "Scrum Timer",
     "version": "1.2",
     "description": "Scrum Timer",
-    "permissions": ["storage", "declarativeContent"],
+    "permissions": ["tabs", "<all_urls>", "storage", "declarativeContent"],
     "options_page": "options.html",
     "background": {
       "scripts": ["background.js"],
@@ -17,13 +17,6 @@
         "128": "img/panda.png"
       }
     },
-    "content_scripts": [
-      {
-        "matches": ["https://sapjira.wdf.sap.corp/*"],
-        "js": ["content.js"],
-        "run_at": "document_end"
-      }
-    ],
     "icons": {
       "16": "img/panda.png",
       "32": "img/panda.png",
