@@ -2,7 +2,7 @@
     "name": "Scrum Timer",
     "version": "1.4",
     "description": "Scrum Timer",
-    "permissions": ["tabs", "<all_urls>", "storage", "declarativeContent"],
+    "permissions": ["activeTab", "storage", "declarativeContent"],
     "options_page": "options.html",
     "background": {
       "scripts": ["background.js"],

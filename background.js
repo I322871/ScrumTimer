@@ -12,18 +12,3 @@ chrome.runtime.onInstalled.addListener(function() {
         }]);
     });
 });
-
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
-    if (changeInfo.status === 'complete') {
-        chrome.tabs.sendMessage(tabId, {type: 'check_existence'}, function(msg) {
-            msg = msg || {};
-            if (msg.status !== 'loaded') {
-                chrome.storage.sync.get({scrumUrls: [], injectedTabs: []}, function(data) {
-                    if (data.scrumUrls.filter(url => tab.url.includes(url)).length){
-                        chrome.tabs.executeScript(tabId, {file: 'myScript.js', runAt: 'document_start'});
-                    }
-                });
-            }
-        });
-    }
-});
