@@ -1,6 +1,5 @@
-chrome.storage.sync.set({isStarted: false});
-
 var div = document.createElement('div');
+div.classList.add('scurm_timer');
 div.style['display'] = 'flex';
 div.style['flex-direction'] = 'column';
 div.style['align-items'] = 'center';
@@ -54,19 +53,23 @@ _setTimeToCountDown = function(time) {
     countDown.innerHTML = min + ':' + sec;
 }
 
-chrome.runtime.onMessage.addListener(function(request) {
-    if (interval) {
-        clearInterval(interval);
-    }
-    _clearAlert();
-    if(document.body.firstChild !== div) {
-        document.body.insertBefore(div, document.body.firstChild);
-        chrome.storage.sync.get({time: 120}, function(items) {
-            storageTime = items.time;
-            _setTimeToCountDown(storageTime);
-        });
-    } else {
-        document.body.removeChild(document.body.firstChild);
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.type === 'check_existence') {
+        sendResponse({status: 'loaded'});
+    } else if (request.type === 'daily_scrum') {
+        if (interval) {
+            clearInterval(interval);
+        }
+        _clearAlert();
+        if(!document.body.firstChild.classList || !document.body.firstChild.classList.contains('scurm_timer')) {
+            document.body.insertBefore(div, document.body.firstChild);
+            chrome.storage.sync.get({time: 120}, function(items) {
+                storageTime = items.time;
+                _setTimeToCountDown(storageTime);
+            });
+        } else {
+            document.body.removeChild(document.body.firstChild);
+        }
     }
 });
 
